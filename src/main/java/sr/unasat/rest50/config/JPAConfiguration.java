@@ -6,8 +6,8 @@ import javax.persistence.Persistence;
 
 public class JPAConfiguration {
     private static final String PERSISTENCE_UNIT_NAME = "PERSISTENCE";
-    private static EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-    private static EntityManager entityManager = factory.createEntityManager();
+    private static final EntityManagerFactory factory = Persistence.createEntityManagerFactory("PERSISTENCE");
+    private static final EntityManager entityManager = factory.createEntityManager();
 
 
     public static EntityManagerFactory getEntityManagerFactory() {

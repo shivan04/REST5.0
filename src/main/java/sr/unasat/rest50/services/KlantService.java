@@ -8,8 +8,8 @@ import java.util.List;
 
 public class KlantService {
 
-    private static List<Klanten> klantenList;
-    private static int klantenListId;
+    private  List<Klanten> klantenList;
+    private  int klantenListId;
     private KlantDao klantenDao;
 
 
@@ -26,7 +26,7 @@ public class KlantService {
 
 
     public List<Klanten> findAll(){ //get
-        return KlantDao.retrieveKlantenList();
+        return klantenDao.retrieveKlantenList();
     }
 //
 //    public void insertKlanten(Klanten menuObj){ //post
