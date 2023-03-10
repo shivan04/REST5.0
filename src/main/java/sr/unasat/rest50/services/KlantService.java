@@ -10,28 +10,22 @@ public class KlantService {
 
     private  List<Klanten> klantenList;
     private  int klantenListId;
-    private KlantDao klantenDao;
+    private final KlantDao klantenDao;
 
 
     public KlantService() {
         this.klantenDao = new KlantDao(JPAConfiguration.getEntityManager());
     }
-        /*public KlantenService(){
-        if (klantenList == null) {
-            klantenListId = 0;
-            klantenList = new ArrayList<>();
-            klantenList.add(new Klanten(++klantenListId));
-        }
-    }*/
 
 
     public List<Klanten> findAll(){ //get
         return klantenDao.retrieveKlantenList();
     }
 //
-//    public void insertKlanten(Klanten menuObj){ //post
-//        klantenDao.insert(menuObj);
-//    }
+    public void insertKlanten(Klanten klanten){ //post
+        klantenDao.insert(klanten);
+    }
+
 //
 //    public Klanten updateKlanten(int klantenUpdate){ //put
 //        return klantenDao.findByKlantId(klantenUpdate);

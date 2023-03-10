@@ -1,89 +1,131 @@
 package sr.unasat.rest50.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.time.LocalTime;
+import java.sql.Time;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class Reservation {
-    private int reservationId;
-    private Date reservationDate;
-    private LocalTime beginTijd;
-    private LocalTime eindTijd;
-   // private Klanten klantenByKlantenNummer;
-    private Location locationByLocationId;
-   // private Werknemer werknemerNummer;
-    private int reservationNumber;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "reservation_id")
-    public int getReservationId() {
-        return reservationId;
+    @Column
+    private int reservation_id;
+    @Column
+    private Date reservation_date;
+    @Column
+    private Time reservation_time;
+    @Column
+    private int location_id;
+    @Column
+    private int number_of_guest;
+    @Column
+    private String special_requests;
+    @Column
+    private int klant_id;
+    @Column
+    private int tafel_id;
+
+
+
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "klant_id", referencedColumnName = "klantId")
+//    @JsonIgnoreProperties(value = "reservation", allowSetters = true)
+//    private Klanten klanten;
+//
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "tafel_id", referencedColumnName = "tafel_id")
+//    @JsonIgnoreProperties(value = "reservation", allowSetters = true)
+//    private Tafels tafels;
+
+//    public Tafels getTafels() {
+//        return tafels;
+//    }
+//
+//    public void setTafels(Tafels tafels) {
+//        this.tafels = tafels;
+//    }
+//
+//    public Klanten getKlanten() {
+//        return klanten;
+//    }
+//
+//    public void setKlanten(Klanten klanten) {
+//        this.klanten = klanten;
+//    }
+
+    public int getReservation_id() {
+        return reservation_id;
     }
 
-    public void setReservationId(int reservationId) {
-        this.reservationId = reservationId;
+    public void setReservation_id(int reservation_id) {
+        this.reservation_id = reservation_id;
     }
 
-    @Basic
-    @Column(name = "reservation_date")
-    public Date getReservationDate() {
-        return reservationDate;
+    public Date getReservation_date() {
+        return reservation_date;
     }
 
-    public void setReservationDate(Date reservationDate) {
-        this.reservationDate = reservationDate;
+    public void setReservation_date(Date reservation_date) {
+        this.reservation_date = reservation_date;
     }
 
-    @Basic
-    @Column(name = "begin_tijd")
-    public LocalTime getBeginTijd() {
-        return beginTijd;
+    public Time getReservation_time() {
+        return reservation_time;
     }
 
-    public void setBeginTijd(LocalTime beginTijd) {
-        this.beginTijd = beginTijd;
+    public void setReservation_time(Time reservation_time) {
+        this.reservation_time = reservation_time;
     }
 
-    @Basic
-    @Column(name = "eind_tijd")
-    public LocalTime getEindTijd() {
-        return eindTijd;
+    public int getLocation_id() {
+        return location_id;
     }
 
-    public void setEindTijd(LocalTime eindTijd) {
-        this.eindTijd = eindTijd;
+    public void setLocation_id(int location_id) {
+        this.location_id = location_id;
     }
 
-    @Basic
-    @Column (name = "reservation_number")
-    public  int getReservationNumber(){return reservationNumber;}
-    public void setReservationNumber (int reservationNumber){this.reservationNumber = reservationNumber;}
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Reservation that = (Reservation) o;
-
-        if (reservationId != that.reservationId) return false;
-        if (reservationDate != null ? !reservationDate.equals(that.reservationDate) : that.reservationDate != null)
-            return false;
-        if (beginTijd != null ? !beginTijd.equals(that.beginTijd) : that.beginTijd != null) return false;
-        if (eindTijd != null ? !eindTijd.equals(that.eindTijd) : that.eindTijd != null) return false;
-
-        return true;
+    public int getNumber_of_guest() {
+        return number_of_guest;
     }
 
+    public void setNumber_of_guest(int number_of_guest) {
+        this.number_of_guest = number_of_guest;
+    }
 
-/*
+    public String getSpecial_requests() {
+        return special_requests;
+    }
+
+    public void setSpecial_requests(String special_requests) {
+        this.special_requests = special_requests;
+    }
+
+    public int getKlant_id() {
+        return klant_id;
+    }
+
+    public void setKlant_id(int klant_id) {
+        this.klant_id = klant_id;
+    }
+
+    public int getTafel_id() {
+        return tafel_id;
+    }
+
+    public void setTafel_id(int tafel_id) {
+        this.tafel_id = tafel_id;
+    }
+
+    /*
     @ManyToOne
     @JoinColumn(name = "klanten_nummer",referencedColumnName = "klanten_nummer")
     public Klanten getKlantenByKlantenNummer(){
@@ -96,28 +138,14 @@ public class Reservation {
  */
 
 
+//    @ManyToOne
+//    @JoinColumn(name = "location_id", referencedColumnName = "Location_id")
+//    public Location getLocationByLocationId() {
+//        return locationByLocationId;
+//    }
+//    public void setLocationByLocationId(Location locationByLocationId) {
+//        this.locationByLocationId = locationByLocationId;
+//    }
 
 
-
-
-    @ManyToOne
-    @JoinColumn(name = "location_id", referencedColumnName = "Location_id")
-    public Location getLocationByLocationId() {
-        return locationByLocationId;
-    }
-    public void setLocationByLocationId(Location locationByLocationId) {
-        this.locationByLocationId = locationByLocationId;
-    }
-
-    @Override
-    public String toString() {
-        return "Reservation{" +
-                "id=" + reservationId+
-                ", reservationdate='" + reservationDate + '\'' +
-                ", begintijd ='" + beginTijd + '\'' +
-                ", eindtijd='" + eindTijd + '\'' +
-             //   ", klantenNummer=" + klantenByKlantenNummer +
-                ", locationId =" + locationByLocationId+
-                '}';
-    }
 }

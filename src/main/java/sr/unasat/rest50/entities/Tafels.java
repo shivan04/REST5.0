@@ -1,79 +1,66 @@
 package sr.unasat.rest50.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
 
 public class Tafels {
-    private static long tafelId;
-    private static int aantalPersonen;
-    private static String category;
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "tafel_id")
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
+    @Column
+    private int tafel_id;
+    @Column
+    private int tafel_nummer;
+    @Column
+    private int aantal_zitplaatsen;
+    @Column
+    private int location;
 
+//    @OneToMany(mappedBy = "tafels")
+//    @JsonIgnoreProperties(value = "tafels", allowSetters = true)
+//    private Set<Reservation> reservation;
+//
+//    public int getTafel_id() {
+//        return tafel_id;
+//    }
+//
+//    public Set<Reservation> getReservation() {
+//        return reservation;
+//    }
 
-    public static int getTafelId() {
-        return (int) tafelId;
+//    public void setReservation(Set<Reservation> reservation) {
+//        this.reservation = reservation;
+//    }
+
+    public void setTafel_id(int tafel_id) {
+        this.tafel_id = tafel_id;
     }
 
-    public void setTafelId(int tafelId) {
-        this.tafelId = tafelId;
+    public int getTafel_nummer() {
+        return tafel_nummer;
     }
 
-    @Basic
-    @Column(name = "aantal_personen")
-    public int getAantalPersonen() {
-        return aantalPersonen;
+    public void setTafel_nummer(int tafel_nummer) {
+        this.tafel_nummer = tafel_nummer;
     }
 
-    public void setAantalPersonen(int aantalPersonen) {
-        this.aantalPersonen = aantalPersonen;
+    public int getAantal_zitplaatsen() {
+        return aantal_zitplaatsen;
     }
 
-    @Basic
-    @Column(name = "category")
-    public static String getCategory() {
-        return category;
+    public void setAantal_zitplaatsen(int aantal_zitplaatsen) {
+        this.aantal_zitplaatsen = aantal_zitplaatsen;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public int getLocation() {
+        return location;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Tafels tafels = (Tafels) o;
-
-        if (tafelId != tafels.tafelId) return false;
-        if (aantalPersonen != tafels.aantalPersonen) return false;
-        if (category != null ? !category.equals(tafels.category) : tafels.category != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = (int) tafelId;
-        result = 31 * result + aantalPersonen;
-        result = 31 * result + (category != null ? category.hashCode() : 0);
-        return result;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Tafel{" +
-
-                " tafelid =' " + tafelId + '\'' +
-                ", aantalpersonen' " + aantalPersonen + '\'' +
-                ", category  " + category +'\''+
-                "}";
+    public void setLocation(int location) {
+        this.location = location;
     }
 }

@@ -14,7 +14,7 @@ public class HelloApplication extends Application {
         //Map<String, Object> properties = new HashMap<String, Object>();
         Map<String, Object> properties = new HashMap<String, Object>();
         properties.put("jersey.config.server.provider.packages", "sr.unasat.rest50.controller");//sr/unasat/webreserveringv02/controller
-        JPAConfiguration.getEntityManager();
+//        JPAConfiguration.getEntityManager();
         return properties;
     }
 

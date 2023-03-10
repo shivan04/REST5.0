@@ -1,5 +1,6 @@
 package sr.unasat.rest50.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,7 +17,6 @@ import java.util.Set;
 public class Klanten {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-
     @Column
     private int klantId;
     @Column
@@ -34,12 +34,19 @@ public class Klanten {
     @Column
     private int klantenNummer;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "klanten_nummer")
-    private Klanten klanten_nummer;
+//
+//    public Set<Reservation> getReservation() {
+//        return reservation;
+//    }
+//
+//    public void setReservation(Set<Reservation> reservation) {
+//        this.reservation = reservation;
+//    }
+//
+//    @OneToMany(mappedBy = "klanten")
+//    @JsonIgnoreProperties(value = "klanten", allowSetters = true)
+//    private Set<Reservation> reservation;
 
-//    @Column
-//    private Set<Reservation> reservations;
 
     public int getKlantId() {
         return klantId;
@@ -97,13 +104,13 @@ public class Klanten {
         this.klantenNummer = klantenNummer;
     }
 
-    public Klanten getKlanten_nummer() {
-        return klanten_nummer;
-    }
-
-    public void setKlanten_nummer(Klanten klanten_nummer) {
-        this.klanten_nummer = klanten_nummer;
-    }
+//    public Klanten getKlanten_nummer() {
+//        return klanten_nummer;
+//    }
+//
+//    public void setKlanten_nummer(Klanten klanten_nummer) {
+//        this.klanten_nummer = klanten_nummer;
+//    }
 
     public String getVoornaam() {
         return voornaam;
