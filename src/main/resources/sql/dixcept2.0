@@ -1,0 +1,44 @@
+Create schema Dixsept2.0;
+
+CREATE TABLE klanten (
+klant_id INT Not null AUTO_INCREMENT PRIMARY KEY,
+Achternaam VARCHAR(30) NOT NULL,
+Voornaam VARCHAR(30) NOT NULL,
+id_nummer VARCHAR(30),
+adress VARCHAR(30) ,
+district VARCHAR(30),
+telefoon_nummer int
+);
+
+create table reservation (
+reservation_id int not null auto_increment primary key,
+klant_id int,
+tafel_id int,
+reservation_date date ,
+begin_tijd time,
+number_of_guest int,
+special_requests varchar(255)
+);
+
+create table tafel(
+    tafel_id int not null auto_increment primary key,
+    tafel_nummer int, 
+    number_of_seats,
+    location varchar(150)
+);
+
+create table availability(
+    availability_id  int not null auto_increment primary key,
+    tafel_id int,
+    av_date date,
+    start_time,
+    end_time,
+    available boolean
+);
+
+create table bookings(
+    booking_id  int not null auto_increment primary key,
+    tafel_id int,
+    reservation_id int,
+    booked boolean
+)

@@ -1,0 +1,68 @@
+Create schema ReserveringSysteem;
+
+CREATE TABLE klanten (
+klant_id INT Not null AUTO_INCREMENT PRIMARY KEY,
+Achternaam VARCHAR(30) NOT NULL,
+Voornaam VARCHAR(30) NOT NULL,
+id_nummer VARCHAR(30),
+adress VARCHAR(30) ,
+district VARCHAR(30),
+telefoon_nummer int
+);
+
+CREATE TABLE werknemer (
+werkenmer_id int not null auto_increment primary key,
+Achternaam VARCHAR(30) NOT NULL,
+Voornaam VARCHAR(30) NOT NULL,
+adress VARCHAR(30) ,
+district VARCHAR(30),
+telefoon_nummer int,
+id_nummer VARCHAR(30)
+);
+
+create table reservation (
+reservation_id int not null auto_increment primary key,
+reservation_date date not null,
+begin_tijd time not null,
+eind_tijd time not null,
+number_of_guest int,
+special_requests varchar(255),
+);
+
+create table location (
+Location_id int not null auto_increment primary key ,
+naam varchar(30) not null,
+adress varchar(30) not null,
+district varchar(30) not null
+);
+
+create table tafels (
+tafel_id int not null  auto_increment primary key,
+aantal_personen int not null,
+category varchar(30)
+);
+
+alter table werknemer
+add foreign key (location_id) references location (location_id);
+
+alter table reservation
+add column klant_id int,
+add column werknemer_id int,
+add column location_id int,
+add column tafel_id int ;
+
+
+
+Alter table reservation
+add foreign key (klant_id) references klanten(klant_id),
+add foreign key(werknemer_id) references werknemer(werknemer_id),
+add foreign key (location_id ) references location(location_id),
+add	foreign key	(tafel_id)	references tafels(tafel_id);
+
+alter table reservation
+drop foreign key reservation_ibfk_4;
+
+alter table tafels
+modify column tafel_id int not null unique auto_increment first;
+
+
