@@ -1,130 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Grayscale - Start Bootstrap Theme</title>
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-        
-    </head>
-    <body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">Dixsept</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#reservation">Reservation</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#signup">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- Masthead-->
-        <header class="masthead">
-            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
-                <div class="d-flex justify-content-center">
-                    <div class="text-center">
-                        <h1 class="mx-auto my-0 text-uppercase">Grayscale</h1>
-                        <h2 class="text-white-50 mx-auto mt-2 mb-5">A free, responsive, one page Bootstrap theme created by Start Bootstrap.</h2>
-                        <a class="btn btn-primary" href="#about">Get Started</a>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <div class="container">
-       
-            <form id="contactForm">
-                <h2> Fill Contact Info</h2>
-                 
-                    <input id="achternaam" class="w3-input" type="text" placeholder="achternaam" required>
-                 
-           
-                    <input id="voornaam" class="w3-input" type="text" placeholder="voornaam" required>
-                    
-                  
-                    <input id="idNummer" class="w3-input" type="text"   placeholder="id-nummer" required>
-                   
-                  
-                    <input id="adress" class="w3-input" type="text" placeholder="adress" required>
-                   
-                  
-                    <input id="telefoonNummer" class="w3-input" type="number" placeholder="TelefoonNummer" required>
-                    
-                    <div class="btn-box">
-                        <button id="next1" type="button" >Next</button>
-                    </div> 
-                  
-            </form>
-            <form id="reservationForm">
-                <h2> Reservation Info</h2>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with FoodHut landing page.">
+    <meta name="author" content="Devcrud">
+    <title>Dixsept|Srsofical</title>
+   
+    <!-- font icons -->
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+
+    <link rel="stylesheet" href="assets/vendors/animate/animate.css">
+
+    <!-- Bootstrap + FoodHut main styles -->
+	<link rel="stylesheet" href="assets/css/foodhut.css">
+    <link rel="stylesheet" href="multistep.css">
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
     
-                <input id = "location" type="text" placeholder="Restaurant">
-                <input id="table" type="text" placeholder="Table">
-                <input id="reservationDate" type="date" placeholder="Reservation Date">
-                <input id="reservationTime" type="time" placeholder="Reservation time">
-                <input id="numberOfGuest" type="number" placeholder="Number Of Guest">
-                <input id="specialRequest" type="text" placeholder="Special Request">
-    
-                    <div class="btn-box">
-                        <button id="back1" type="button">Back</button>
-                        <button id="next2" type="button">Next</button>
-                       
-                    </div> 
-            </form>
-    
-            <dvi class="step-row">
-              <div id="progress"></div>
-            <div class="step-col"> <small>Step 1</small></div>
-            <div class="step-col"> <small>Step 2</small></div>
-            </dvi>
+    <!-- Navbar -->
+    <nav class="custom-navbar navbar navbar-expand-lg navbar-dark fixed-top" data-spy="affix" data-offset-top="10">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#gallary">Gallary</a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#multistepreservation">Book-Table</a>
+                </li>
+            </ul>
+            <a class="navbar-brand m-auto" href="#">
+                <img src="assets/imgs/logo.svg" class="brand-img" alt="">
+                <span class="brand-txt">DIX_SEPT</span>
+            </a>
+            <ul class="navbar-nav">
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="#blog">Blog<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#testmonial">Reviews</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact Us</a>
+                </li>
+                <li class="nav-item"> -->
+                    <a href="components.html" class="btn btn-primary ml-xl-4">Components</a>
+                </li>
+            </ul>
         </div>
-        <script>
-            // interne script voor html
-            var contactForm = document.getElementById("contactForm");
-            var reservationForm = document.getElementById("reservationForm");
-            var next1 = document.getElementById("next1")
-            var back1 = document.getElementById("back1")
-            var progress = document.getElementById("progress")
-    
-            next1.onclick = function() {
-                contactForm.style.left = "-600px"
-                reservationForm.style.left = "100px"
-                progress.style.width = "600px"
-            }
-            back1.onclick = function() {
-                contactForm.style.left = "100px"
-                reservationForm.style.left = "600px"
-                progress.style.width = "300px"
-            }
-            
-    
-        </script>
+    </nav>
+
+    <div class="container">
+       
+        <form id="contactForm">
+            <h2> Fill Contact Info</h2>
+             
+                <input id="achternaam" class="w3-input" type="text" placeholder="achternaam" required>
+             
+       
+                <input id="voornaam" class="w3-input" type="text" placeholder="voornaam" required>
+                
+              
+                <input id="idNummer" class="w3-input" type="text"   placeholder="id-nummer" required>
+               
+              
+                <input id="adress" class="w3-input" type="text" placeholder="adress" required>
+               
+              
+                <input id="telefoonNummer" class="w3-input" type="number" placeholder="TelefoonNummer" required>
+                
+                <div class="btn-box">
+                    <button id="next1" type="button" >Next</button>
+                </div> 
+              
+        </form>
+        <form id="reservationForm">
+            <h2> Reservation Info</h2>
+
+            <input id = "location" type="text" placeholder="Restaurant">
+            <input id="table" type="text" placeholder="Table">
+            <input id="reservationDate" type="date" placeholder="Reservation Date">
+            <input id="reservationTime" type="time" placeholder="Reservation time">
+            <input id="numberOfGuest" type="number" placeholder="Number Of Guest">
+            <input id="specialRequest" type="text" placeholder="Special Request">
+
+                <div class="btn-box">
+                    <button id="back1" type="button">Back</button>
+                    <button id="next2" type="button">Reserve</button>
+                   
+                </div> 
+        </form>s
+
+        <dvi class="step-row">
+          <div id="progress"></div>
+        <div class="step-col"> <small>Step 1</small></div>
+        <div class="step-col"> <small>Step 2</small></div>
+        </dvi>
+    </div>
+    <script>
+        // interne script voor html
+        var contactForm = document.getElementById("contactForm");
+        var reservationForm = document.getElementById("reservationForm");
+        var next1 = document.getElementById("next1")
+        var back1 = document.getElementById("back1")
+        var progress = document.getElementById("progress")
+
+        next1.onclick = function() {
+            contactForm.style.left = "-600px"
+            reservationForm.style.left = "100px"
+            progress.style.width = "600px"
+        }
+        back1.onclick = function() {
+            contactForm.style.left = "100px"
+            reservationForm.style.left = "600px"
+            progress.style.width = "300px"
+        }
         
-        <!-- Footer-->
-        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; Your Website 2022</div></footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    </body>
+
+    </script>
+   
+
+<!--     
+    <div class="bg-dark text-light text-center border-top wow fadeIn">
+        <p class="mb-0 py-3 text-muted small">&copy; Copyright <script>document.write(new Date().getFullYear())</script> Made with <i class="ti-heart text-danger"></i> By <a>03Customs</a></p>
+    </div> -->
+    <!-- end of page footer -->
+
+	<!-- core  -->
+    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+
+    <!-- bootstrap affix -->
+    <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+
+    <!-- wow.js -->
+    <script src="assets/vendors/wow/wow.js"></script>
+    
+    <!-- google maps -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtme10pzgKSPeJVJrG1O3tjR6lk98o4w8&callback=initMap"></script>
+
+    <!-- FoodHut js -->
+    <script src="assets/js/foodhut.js"></script>
+
+</body>
 </html>
