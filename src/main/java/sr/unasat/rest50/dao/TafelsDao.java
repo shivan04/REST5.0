@@ -3,7 +3,6 @@ package sr.unasat.rest50.dao;
 import sr.unasat.rest50.entities.Tafels;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -15,11 +14,20 @@ public class TafelsDao {
         this.entityManager = entityManager;
     }
 
-    public  Tafels insertTafel(Tafels tafels){
+    public List<Tafels> retrieveTafelList() {
+        entityManager.getTransaction().begin();
+        String jpql = "select  c from Tafels c";
+        TypedQuery<Tafels> query = entityManager.createQuery(jpql, Tafels.class);
+        List<Tafels> tafelsList = query.getResultList();
+        entityManager.getTransaction().commit();
+        return tafelsList;
+    }
+
+    public Tafels insertTafel(Tafels tafels) {
         entityManager.getTransaction().begin();
         entityManager.persist(tafels);
         entityManager.getTransaction().commit();
-        return tafels ;
+        return tafels;
     }
 
 //    public static Tafels findBytafelID(int tafelId) {
@@ -43,14 +51,7 @@ public class TafelsDao {
 //
 //    }
 
-    public List<Tafels> retrieveTafelList() {
-        entityManager.getTransaction().begin();
-        String jpql = "select  c from Tafels c";
-        TypedQuery<Tafels> query = entityManager.createQuery(jpql, Tafels.class);
-        List<Tafels> tafelsList = query.getResultList();
-        entityManager.getTransaction().commit();
-        return tafelsList;
-    }
+
 //    public static int updateTafel(Tafels tafels) {
 //        entityManager.getTransaction().begin();
 //        Query query = entityManager.createQuery("UPDATE Tafels t SET t.category = :category where t.tafelId = :tafel_id");

@@ -27,8 +27,8 @@ public class KlantDao {
     public Klanten insert(Klanten klanten) {
         entityManager.getTransaction().begin();
         entityManager.persist(klanten);
-        entityManager.merge(klanten);
-//        entityManager.getTransaction(entityManager).commit();
+//        entityManager.merge(klanten);
+        entityManager.getTransaction().commit();
         return klanten;
     }
 

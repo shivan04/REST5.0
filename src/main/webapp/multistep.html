@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="multistep.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+       
+        <form id="contactForm">
+            <h2> Fill Contact Info</h2>
+             
+                <input id="achternaam" class="w3-input" type="text" placeholder="achternaam" required>
+             
+       
+                <input id="voornaam" class="w3-input" type="text" placeholder="voornaam" required>
+                
+              
+                <input id="idNummer" class="w3-input" type="text"   placeholder="id-nummer" required>
+               
+              
+                <input id="adress" class="w3-input" type="text" placeholder="adress" required>
+               
+              
+                <input id="telefoonNummer" class="w3-input" type="number" placeholder="TelefoonNummer" required>
+                
+                <div class="btn-box">
+                    <button id="next1" type="button" >Next</button>
+                </div> 
+              
+        </form>
+        <form id="reservationForm">
+            <h2> Reservation Info</h2>
+
+            <input id = "location" type="text" placeholder="Restaurant">
+            <input id="table" type="text" placeholder="Table">
+            <input id="reservationDate" type="date" placeholder="Reservation Date">
+            <input id="reservationTime" type="time" placeholder="Reservation time">
+            <input id="numberOfGuest" type="number" placeholder="Number Of Guest">
+            <input id="specialRequest" type="text" placeholder="Special Request">
+
+                <div class="btn-box">
+                    <button id="back1" type="button">Back</button>
+                    <button id="next2" type="button">Next</button>
+                   
+                </div> 
+        </form>
+
+        <dvi class="step-row">
+          <div id="progress"></div>
+        <div class="step-col"> <small>Step 1</small></div>
+        <div class="step-col"> <small>Step 2</small></div>
+        </dvi>
+    </div>
+    <script>
+        // interne script voor html
+        var contactForm = document.getElementById("contactForm");
+        var reservationForm = document.getElementById("reservationForm");
+        var next1 = document.getElementById("next1")
+        var back1 = document.getElementById("back1")
+        var progress = document.getElementById("progress")
+
+        next1.onclick = function() {
+            contactForm.style.left = "-600px"
+            reservationForm.style.left = "100px"
+            progress.style.width = "600px"
+        }
+        back1.onclick = function() {
+            contactForm.style.left = "100px"
+            reservationForm.style.left = "600px"
+            progress.style.width = "300px"
+        }
+        
+
+    </script>
+    
+    
+</body>
+</html>
