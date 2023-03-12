@@ -17,12 +17,13 @@ public class LocationDao {
     }
 
     //insert
-    public static Location insert(Location Location) {
+    public  Location insert(Location Location) {
         entityManager.getTransaction().begin();
         entityManager.persist(Location);
         entityManager.getTransaction().commit();
         return Location ;
     }
+
     public static Location findBylocationId(int locationId) {
         entityManager.getTransaction().begin();
         String jpql = "select t from Location t  where t.locationId = :locationId";
@@ -32,7 +33,7 @@ public class LocationDao {
         return location;
     }
 
-    public static List<Location> retrieveLocationList() {
+    public  List<Location> retrieveLocationList() {
         entityManager.getTransaction().begin();
         String jpql = "select l from Location l ";
         TypedQuery<Location> query = entityManager.createQuery(jpql, Location.class);
@@ -51,4 +52,14 @@ public class LocationDao {
         entityManager.getTransaction().commit();
         return rowsDeleted;
     }
+//    public  Location findBylocationName(int locationId) {
+//        entityManager.getTransaction().begin();
+//        String jpql = "select naam from Location t  where t.naam = :naam";
+//        TypedQuery<Location> query = entityManager.createQuery(jpql, Location.class);
+//        Location location = query.setParameter("naam", locationId).getSingleResult();
+//        entityManager.getTransaction().commit();
+//        return location;
+//    }
+
+
 }

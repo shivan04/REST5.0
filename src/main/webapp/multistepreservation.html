@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
 
     <link rel="stylesheet" href="assets/vendors/animate/animate.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 
     <!-- Bootstrap + FoodHut main styles -->
 	<link rel="stylesheet" href="assets/css/foodhut.css">
@@ -86,7 +91,8 @@
         <form id="reservationForm">
             <h2> Reservation Info</h2>
 
-            <input id = "location" type="text" placeholder="Restaurant">
+            <!-- <input id = "my-dropdown" class="from-control" type="text" placeholder="Restaurant"> -->
+            <select id="my-dropdown"></select>
             <input id="table" type="text" placeholder="Table">
             <input id="reservationDate" type="date" placeholder="Reservation Date">
             <input id="reservationTime" type="time" placeholder="Reservation time">
@@ -95,7 +101,7 @@
 
                 <div class="btn-box">
                     <button id="back1" type="button">Back</button>
-                    <button id="next2" type="button">Reserve</button>
+                    <button id="next2" onclick="addKlant()" type="button">Reserve</button>
                    
                 </div> 
         </form>s
@@ -106,6 +112,7 @@
         <div class="step-col"> <small>Step 2</small></div>
         </dvi>
     </div>
+    <script src="./multistrepReservation.js"></script>
     <script>
         // interne script voor html
         var contactForm = document.getElementById("contactForm");
@@ -124,6 +131,8 @@
             reservationForm.style.left = "600px"
             progress.style.width = "300px"
         }
+
+
         
 
     </script>

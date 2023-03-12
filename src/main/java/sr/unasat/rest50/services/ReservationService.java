@@ -2,7 +2,6 @@ package sr.unasat.rest50.services;
 
 import sr.unasat.rest50.config.JPAConfiguration;
 import sr.unasat.rest50.dao.ReservationDao;
-import sr.unasat.rest50.entities.Klanten;
 import sr.unasat.rest50.entities.Reservation;
 
 import java.util.List;
@@ -12,15 +11,16 @@ public class ReservationService {
     private ReservationDao reservationDao;
 
 
-    public ReservationService(){
+    public ReservationService() {
         this.reservationDao = new ReservationDao(JPAConfiguration.getEntityManager());
     }
 
-    public List<Reservation> findAll(){ //get
+    public List<Reservation> findAll() { //get
         return reservationDao.retrieveReservationList();
     }
+
     //
-    public void insertReservation(Reservation reservation){ //post
+    public void insertReservation(Reservation reservation) { //post
         reservationDao.insertReservation(reservation);
     }
 }

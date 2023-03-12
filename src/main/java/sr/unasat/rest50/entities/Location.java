@@ -1,9 +1,6 @@
 package sr.unasat.rest50.entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Location {
@@ -12,6 +9,7 @@ public class Location {
     private String adress;
     private String district;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "Location_id")
     public int getLocationId() {
