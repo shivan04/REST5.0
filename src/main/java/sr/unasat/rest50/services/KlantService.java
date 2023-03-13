@@ -26,12 +26,12 @@ public class KlantService {
         klantenDao.insert(klanten);
     }
 
-//
-//    public Klanten updateKlanten(int klantenUpdate){ //put
-//        return klantenDao.findByKlantId(klantenUpdate);
-//    }
-//
-//    public void deleteKlanten(int klantenDelete){ //delete
-//        klantenDao.delete(klantenDelete);
-//    }
+
+   public Klanten updateKlanten(int klantenUpdate){ //put
+       return klantenDao.findByKlantId(klantenUpdate);
+   }
+
+   public void deleteKlanten(int klantenDelete){ //delete
+       klantenDao.delete(klantenDelete);
+   }
 }
