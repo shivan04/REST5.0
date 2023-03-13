@@ -11,9 +11,9 @@ import java.util.Map;
 public class HelloApplication extends Application {
     @Override
     public Map<String, Object> getProperties() {
-        //Map<String, Object> properties = new HashMap<String, Object>();
+//        Map<String, Object> properties = new HashMap<String, Object>();
         Map<String, Object> properties = new HashMap<String, Object>();
-        properties.put("jersey.config.server.provider.packages", "sr.unasat.rest50.controller");//sr/unasat/webreserveringv02/controller
+        properties.put("jersey.config.server.provider.packages", "sr.unasat.rest50.controller");
 //        JPAConfiguration.getEntityManager();
         return properties;
     }
