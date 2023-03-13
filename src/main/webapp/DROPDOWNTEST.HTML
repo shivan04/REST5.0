@@ -1,29 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="multistep.css">
-    <title>Document</title>
+	<title>Dropdown with API Data</title>
 </head>
 <body>
-    <select id="my-dropdown"></select>
+	<select id="myDropdown"></select>
 
-    <script>
-      const dropdown = document.getElementById("my-dropdown");
-      fetch("http://localhost:8081/REST5_0_war/api/location/list")
-        .then(response => response.json())
-        .then(data => {
-          data.forEach(item => {
-            const option = document.createElement("option");
-            option.value = item.id;
-            option.text = item.id; // Set the text to the ID, change this to item.naam or any other property you want to display instead
-            dropdown.appendChild(option);
-          });
-        });
-    </script>
-
+	<script>
+		// Retrieve data from API
+		fetch('http://localhost:8081/REST5_0_war/api/location/list')
+			.then(response => response.json())
+			.then(data => {
+				// Populate dropdown with API data
+				const myDropdown = document.getElementById('myDropdown');
+				data.forEach(item => {
+					const option = document.createElement('option');
+					option.value = item.locationId;
+					option.text = item.locationName;
+					myDropdown.appendChild(option);
+				});
+			})
+			.catch(error => console.error(error));
+	</script>
 </body>
-
 </html>
