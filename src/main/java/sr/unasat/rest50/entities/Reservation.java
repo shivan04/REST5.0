@@ -1,13 +1,20 @@
 package sr.unasat.rest50.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.sql.Time;
+
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Builder
 @AllArgsConstructor
@@ -19,9 +26,12 @@ public class Reservation {
     @Column
     private int reservation_id;
     @Column
-    private Date reservation_date;
+    @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
+//    @JsonDeserialize(using = LocalDateDeserializer.class)
+//    @JsonSerialize(using = LocalDateSerializer.class)
+    private LocalDate reservation_date;
     @Column
-    private Time reservation_time;
+    private LocalTime reservation_time;
     @Column
     private int location_id;
     @Column
@@ -69,19 +79,19 @@ public class Reservation {
         this.reservation_id = reservation_id;
     }
 
-    public Date getReservation_date() {
+    public LocalDate getReservation_date() {
         return reservation_date;
     }
 
-    public void setReservation_date(Date reservation_date) {
+    public void setReservation_date(LocalDate reservation_date) {
         this.reservation_date = reservation_date;
     }
 
-    public Time getReservation_time() {
+    public LocalTime getReservation_time() {
         return reservation_time;
     }
 
-    public void setReservation_time(Time reservation_time) {
+    public void setReservation_time(LocalTime reservation_time) {
         this.reservation_time = reservation_time;
     }
 
@@ -125,7 +135,21 @@ public class Reservation {
         this.tafel_id = tafel_id;
     }
 
-    /*
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "reservation_id=" + reservation_id +
+                ", reservation_date=" + reservation_date +
+                ", reservation_time=" + reservation_time +
+                ", location_id=" + location_id +
+                ", number_of_guest=" + number_of_guest +
+                ", special_requests='" + special_requests + '\'' +
+                ", klant_id=" + klant_id +
+                ", tafel_id=" + tafel_id +
+                '}';
+    }
+
+/*
     @ManyToOne
     @JoinColumn(name = "klanten_nummer",referencedColumnName = "klanten_nummer")
     public Klanten getKlantenByKlantenNummer(){

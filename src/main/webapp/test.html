@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <select id="countryDropdown"></select>
+
+
+    <script>
+        const countryDropdown = document.getElementById("countryDropdown");
+
+fetch("http://localhost:8081/REST5_0_war/api/location/list"
+, {mode: 'no-cors'}
+)
+// fetch("https://restcountries.com/v2/all")
+  .then(response => response.json())
+  .then(data => {
+    data.forEach(country => {
+      const option = document.createElement("option");
+      option.value = country.locationId;
+      option.text = country.naam;
+    //   option.text = country.name;
+        //   option.value = country.alpha2Code;
+      countryDropdown.appendChild(option);
+   
+    });
+  });
+
+
+// fetch('https://cors-anywhere.herokuapp.com/https://example.com/data')
+//   .then(response => response.json())
+//   .then(data => {
+//     // Do something with the data
+//   })
+//   .catch(error => {
+//     console.error(error);
+//   });
+
+    </script>
+    
+</body>
+</html>
