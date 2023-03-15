@@ -1,6 +1,6 @@
 let url = "http://localhost:8081/REST5_0_war/api/klant"
 let url1 = "http://localhost:8081/REST5_0_war/api/reservation"
-let url2 = "http://localhost:8081/REST5_0_war/api/location"
+let url3 = "http://localhost:8081/REST5_0_war/api/tafel"
 
 
 function addKlant() {
@@ -25,14 +25,16 @@ function addKlant() {
 
 function addReservation() {
 
+
     let reservation = {
-        // "klant_id": document.getElementById("klant_id").value,
-        // "Location_id": document.getElementById("restaurant").value,
-        // "Table_id": document.getElementById("table").value,
+        "klant_id": document.getElementById("klant_id").value,
+        "location_id": document.getElementById("restaurant").value,
+        // er moet een get by name komen met een event listener
+        "tafel_id": document.getElementById("table").value,
         "reservation_date": document.getElementById("reservationDate").value,
         "reservation_time": document.getElementById("reservationTime").value,
         "number_of_guest": document.getElementById("numberOfGuest").value,
-        "special_requests": document.getElementById("specialRequest").value,
+        "special_requests": document.getElementById("specialRequest").value
 
     };
     var xmlhttp = new XMLHttpRequest();
@@ -46,6 +48,23 @@ function addReservation() {
     xmlhttp.send(JSON.stringify(reservation));
 }
 
+function addTafel() {
+
+
+    let tafel = {
+        "aantal_zitplaatsen": document.getElementById("numberOfGuest").value,
+        "location": document.getElementById("location_id").value,
+    };
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open('POST', url1 + '/add', true);
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState > 3 && xmlhttp.status === 204) {
+            clearInputFields();
+        }
+    };
+    xmlhttp.setRequestHeader('Content-Type', 'application/json');
+    xmlhttp.send(JSON.stringify(tafel));
+}
 
 
 function clearInputFields() {
@@ -61,11 +80,11 @@ function clearInputFields() {
 fetch('http://localhost:8081/REST5_0_war/api/location/list')
     .then(response => response.json())
     .then(data => {
-        const dropdown = document.getElementById('my-dropdown');
+        const dropdown = document.getElementById('restaurant');
         data.forEach(item => {
             const option = document.createElement('option');
             option.text = item.naam;
-            option.value = item.location_id;
+            option.value = item.Location_id;
             dropdown.add(option);
         });
     });
