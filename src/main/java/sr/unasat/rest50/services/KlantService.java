@@ -25,13 +25,16 @@ public class KlantService {
     public void insertKlanten(Klanten klanten){ //post
         klantenDao.insert(klanten);
     }
+    public void findKlantById(int klanten){
+        klantenDao.findByID(klanten);
+    }
 
 
 //   public Klanten updateKlanten(int klantenUpdate){ //put
 //       return klantenDao.findByKlantId(klantenUpdate);
 //   }
 //
-//   public void deleteKlanten(int klantenDelete){ //delete
-//       klantenDao.delete(klantenDelete);
-//   }
+   public void deleteKlanten(int klanten){ //delete
+       klantenDao.delete(klanten);
+   }
 }

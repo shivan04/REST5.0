@@ -42,13 +42,23 @@ public class KlantDao {
         entityManager.getTransaction().commit();
         return klanten;
     }
+    public Klanten findByID(int klantId) {
 
-    public int delete(int klantNummer) {
+        entityManager.getTransaction().begin();
+        String jpql = "select t from Klanten t  where t.klantId = :klantId";
+        TypedQuery<Klanten> query = entityManager.createQuery(jpql, Klanten.class);
+        Klanten klanten = query.setParameter("klantId", klantId).getSingleResult();
+        entityManager.getTransaction().commit();
+        return klanten;
+    }
+
+
+    public int delete(int klantId) {
         entityManager.getTransaction().begin();
 
         Query query;
-        query = entityManager.createQuery("delete from Klanten where klantenNummer = :klantNummer ");
-        query.setParameter("klantNummer", klantNummer);
+        query = entityManager.createQuery("delete from Klanten where klantId = :klantId");
+        query.setParameter("klantId", klantId);
         int rowsDeleted = query.executeUpdate();
         System.out.println("entities deleted: " + rowsDeleted);
         entityManager.getTransaction().commit();

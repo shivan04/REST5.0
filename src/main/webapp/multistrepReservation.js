@@ -3,6 +3,8 @@ let url1 = "http://localhost:8081/REST5_0_war/api/reservation"
 let url3 = "http://localhost:8081/REST5_0_war/api/tafel"
 
 
+
+
 function addKlant() {
 
     let klanten = {
@@ -21,6 +23,23 @@ function addKlant() {
     };
     xmlhttp.setRequestHeader('Content-Type', 'application/json');
     xmlhttp.send(JSON.stringify(klanten));
+}
+function validateKlantForm()
+{
+    let pass = true;
+    let achternaam = document.getElementById("achternaam").value;
+    let voornaam = document.getElementById("voornaam").value;
+    let idNummer = document.getElementById("idNummer").value;
+    let adress = document.getElementById("adress").value;
+    let telefoonNummer = document.getElementById("telefoonNummer").value;
+
+    if (achternaam == null || achternaam === "", voornaam == null || voornaam === "", idNummer == null || idNummer === "", adress == null || adress === "", telefoonNummer == null || telefoonNummer === "" )
+    {
+        alert("Please fill in all the fields");
+        pass = false;
+    }
+
+    return pass;
 }
 
 function addReservation() {

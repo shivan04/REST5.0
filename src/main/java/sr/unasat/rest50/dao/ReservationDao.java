@@ -35,6 +35,15 @@ public class ReservationDao {
         return reservationList;
     }
 
+    public static Reservation findByReservationId(int reservation_id) {
+        entityManager.getTransaction().begin();
+        String jpql = "select t from Reservation t  where t.reservation_id = :reservationId";
+        TypedQuery<Reservation> query = entityManager.createQuery(jpql, Reservation.class);
+        Reservation reservation = query.setParameter("reservationId", reservation_id).getSingleResult();
+        entityManager.getTransaction().commit();
+        return reservation;
+    }
+//
 
 
 //    public static Reservation findByReservationNumber(int ReservationNumber) {

@@ -1,37 +1,53 @@
-function loadPatientList() {
-    let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            let patientDataList = JSON.parse(this.responseText);
-            let patientList = ' <ul class="w3-ul w3-card-4"> ';
-
-            patientDataList.reverse();
-
-            for (let index = 0; index < patientDataList.length; index++) {
-                patientList +=
-                    ' <li class="w3-bar"> ' +
-
-                    ' <button id= ' + patientDataList[index].id + ' onclick="editPatient(this.id)" ' +
-                    ' class="w3-bar-item w3-button w3-small w3-right">Edit</button> ' +
-
-                    ' <button id=' + patientDataList[index].id + ' onclick="removePatient(this.id)" ' +
-                    ' class="w3-bar-item w3-button w3-small w3-right">Remove</button> ' +
 
 
-                    ' <img src="https://cdn.iconscout.com/icon/free/png-256/health-1659502-1410024.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px"> ' +
-                    ' <div class="w3-bar-item"> ' +
-                    ' <span class="w3-large"> Firstname: ' +  patientDataList[index].firstname  + ' </span><br> ' +
-                    // ' <span> Lastname: ' +  patientDataList[index].lastname  + ' </span> <br>' +
-                    // ' <span> Address: ' +  patientDataList[index].adress  + ' </span> <br>' +
-                    // ' <span> Contactnumber: ' +  patientDataList[index].contactnumber  + ' </span> <br> ' +
-                    // ' <span> Id number: ' +  patientDataList[index].identification.number  + ' </span> <br> ' +
-                    // ' <span> Sex: ' +  patientDataList[index].identification.sex  + ' </span> <br> ' +
-                    ' </div> ';
-            }
-            patientList += "</ul>";
-            document.getElementById("patientData").innerHTML = patientList;
-        }
+// function displayKlantenTable(apiKlantData) {
+//     var table = document.getElementById("breaktime-table");
+//     fetch('http://localhost:8081/REST5_0_war/api/klant/list')
+//         .then(response => response.json())
+//         .then(data1 => {
+//             for (var i = 0; i < apiKlantData.length; i++) {
+//                 var row = table.insertRow(-1);
+//                 var cell1 = row.insertCell(0);
+//                 var cell2 = row.insertCell(1);
+//                 var cell3 = row.insertCell(2);
+//                 var cell4 = row.insertCell(3);
+//                 var cell5 = row.insertCell(4);
+//                 var cell6 = row.insertCell(5);
+//                 var cell7 = row.insertCell(6);
+//                 var cell8 = row.insertCell(7);
+//                 cell1.innerHTML = apiKlantData[i].klantId;
+//                 cell2.innerHTML = apiKlantData[i].achternaam;
+//                 cell3.innerHTML = apiKlantData[i].voornaam;
+//                 cell4.innerHTML = apiKlantData[i].adress;
+//                 cell5.innerHTML = apiKlantData[i].district;
+//                 cell6.innerHTML = apiKlantData[i].idNummer;
+//                 cell7.innerHTML = apiKlantData[i].telefoonNummer;
+//                 // cell8.innerHTML = apiKlantData[i].klantnummer;
+//             }
+//
+//         })
+//         .catch(error => console.error(error));
+// }
+
+
+
+
+function deletePatient(klantId)
+{
+    let patient = {  "id" : klantId,
+        "voornaam" : document.getElementById("voornaam").value,
+        "achternaam" : document.getElementById("achternaam").value,
+        "adress" : document.getElementById("adress").value,
+        "district" : document.getElementById("district").value,
+        "identification" : {
+            "idNummer" : document.getElementById("idNummer").value,
+            "telefoonNummer" : document.getElementById("telefoonNummer").value}}
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("DELETE", "http://localhost:8081/REST5_0_war/api/klant/remove", true);
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState>3 && xhttp.status==200) {
+            displayKlantenTable(); }
     };
-    xhttp.open("GET", "/healthcentremanagement-front-end/api/patient/list", true);
-    xhttp.send();
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send(JSON.stringify(patient));
 }
