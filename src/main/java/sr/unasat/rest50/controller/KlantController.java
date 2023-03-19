@@ -20,6 +20,7 @@ public class KlantController {
    public List<Klanten> findKlant() {
         return klantenService.findAll();*/
 
+
     @Path("/list")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -28,6 +29,7 @@ public class KlantController {
         return klantService.findAll();
     }
 
+
     @Path("/add")
     @POST
 //    @Consumes(MediaType.APPLICATION_JSON)
@@ -35,15 +37,6 @@ public class KlantController {
     public void add(Klanten klanten) {
         klantService.insertKlanten(klanten);
     }
-
-//    @Path("/remove")
-//    @DELETE
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public void remove(int klanten){
-//        klantService.deleteKlanten(klanten);
-//    }
-
 
 
     @DELETE
@@ -62,13 +55,27 @@ public class KlantController {
 
     }
 
-    @GET
-//    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/update/{klantId}")
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/get/{klantId}")
-    public GetKlant getKlantId(@PathParam("klantId") int klantId) {
-        klantService.findKlantById(klantId);
-        System.out.println(klantId);
-//       return klantService.findKlantById(klantId);
+    public Response updateKlant(@PathParam("klantId") int klantId, Klanten updatedKlant) {
+        updatedKlant.setKlantId(klantId);
+        Klanten klanten = klantService.updateKlant(updatedKlant);
+        if (klanten == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } else {
+            return Response.ok(klanten).build();
+        }
+    }
+
+    @Path("/getklant/{klantId}")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Klanten getKlant(@PathParam("klantId") int klantId) {
+        return klantService.updateKlantInfo(klantId);
     }
 }
+
+

@@ -16,32 +16,22 @@
 
 </head>
 <body>
-<table id="breaktime-table">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Achternaam</th>
-        <th>Voornaam</th>
-        <th>Adres</th>
-        <th>Distrikt</th>
-        <th>ID-nummer</th>
-        <th>Telefoonnummer</th>
 
-    </tr>
-    </thead>
-    <tbody id="tableKlanten-body">
-    </tbody>
-</table>
-<script>
-    document.addEventListener("DOMContentLoaded", function(event) {
-        fetch('http://localhost:8081/REST5_0_war/api/klant/list')
-            .then(response => response.json())
-            .then(data1 => {
-                displayKlantenTable(data1);
-            })
-            .catch(error => console.error(error));
-    });
-</script>
+
+
+
+<div id="menuData" class="w3-container">
+</div>
+<!--<script>-->
+<!--    document.addEventListener("DOMContentLoaded", function(event) {-->
+<!--        fetch('http://localhost:8081/REST5_0_war/api/klant/list')-->
+<!--            .then(response => response.json())-->
+<!--            .then(data1 => {-->
+<!--                displayKlantenTable(data1);-->
+<!--            })-->
+<!--            .catch(error => console.error(error));-->
+<!--    });-->
+<!--</script>-->
     <script src="./SearchReservation.js" async></script>
 </body>
 </html>

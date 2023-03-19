@@ -42,8 +42,8 @@ public class KlantDao {
         entityManager.getTransaction().commit();
         return klanten;
     }
-    public Klanten findByID(int klantId) {
 
+    public Klanten findByID(int klantId) {
         entityManager.getTransaction().begin();
         String jpql = "select t from Klanten t  where t.klantId = :klantId";
         TypedQuery<Klanten> query = entityManager.createQuery(jpql, Klanten.class);
@@ -76,6 +76,38 @@ public class KlantDao {
         System.out.println("entities Updated: " + rowsUpdated);
         entityManager.getTransaction().commit();
         return rowsUpdated;
+    }
+
+    public int updateKlanten1(Klanten klanten) {
+        entityManager.getTransaction().begin();
+        Query query = entityManager.createQuery("UPDATE Klanten c SET c.achternaam =:achternaam c.adress = :adres where c.achternaam= :familienaam and c.telefoonNummer= :telefoonnummer");
+        query.setParameter("achternaam", klanten.getAchternaam());
+        query.setParameter("familienaam", klanten.getAdress());
+        query.setParameter("telefoonnummer", klanten.getKlantenNummer());
+        query.setParameter("adres", klanten.getAdress());
+        int rowsUpdated = query.executeUpdate();
+        System.out.println("entities Updated: " + rowsUpdated);
+        entityManager.getTransaction().commit();
+        return rowsUpdated;
+    }
+
+
+    public void update(Klanten patient) {
+        entityManager.getTransaction().begin();
+        Query query = entityManager.createQuery("UPDATE Klanten p SET p.adress = :adress, p.telefoonNummer = :contactnumber," +
+                " p.voornaam = :firstname, p.achternaam = :lastname " +
+                "where p.id = :id");
+        query.setParameter("id", patient.getKlantId());
+        query.setParameter("firstname", patient.getVoornaam());
+        query.setParameter("lastname", patient.getAchternaam());
+//        query.setParameter("adress", patient.getAdress());
+//        query.setParameter("contactnumber", patient.getContactnumber());
+        query.executeUpdate();
+//        Query query2 = entityManager.createQuery("UPDATE Identification i SET i.sex = :sex where i.number = :idNumber");
+//        query2.setParameter("idNumber", patient.getIdentification().getNumber());
+//        query2.setParameter("sex", patient.getIdentification().getSex());
+//        query2.executeUpdate();
+        entityManager.getTransaction().commit();
     }
 
 
