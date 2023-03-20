@@ -40,24 +40,3 @@ function loadKlantenList() {
     xhttp.send();
 }
 
-
-//
-// function deletePatient(klantId)
-// {
-//     let patient = {  "id" : klantId,
-//         "voornaam" : document.getElementById("voornaam").value,
-//         "achternaam" : document.getElementById("achternaam").value,
-//         "adress" : document.getElementById("adress").value,
-//         "district" : document.getElementById("district").value,
-//         "identification" : {
-//             "idNummer" : document.getElementById("idNummer").value,
-//             "telefoonNummer" : document.getElementById("telefoonNummer").value}}
-//     var xhttp = new XMLHttpRequest();
-//     xhttp.open("DELETE", "http://localhost:8081/REST5_0_war/api/klant/remove", true);
-//     xhttp.onreadystatechange = function() {
-//         if (xhttp.readyState>3 && xhttp.status==200) {
-//             displayKlantenTable(); }
-//     };
-//     xhttp.setRequestHeader("Content-Type", "application/json");
-//     xhttp.send(JSON.stringify(patient));
-// }

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Country Info</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<h1>Country Info</h1>
+	<form>
+		<label for="country-code">Enter a 2-letter country code:</label>
+		<input type="text" id="country-code" name="country-code" maxlength="2" required>
+		<button type="submit">Search</button>
+	</form>
+	<div id="country-info"></div>
+
+	<script>
+		const form = document.querySelector('form');
+		form.addEventListener('submit', e => {
+			e.preventDefault();
+			const searchQuery = document.querySelector('#country-code').value;
+			fetch(`http://localhost:8081/REST5_0_war/api/klant/getklant/${searchQuery}`)
+				.then(response => response.json())
+				.then(data => {
+					const klantInfo = data;
+					document.querySelector('#country-info').innerHTML = `
+						<h2>"klantID" ${klantInfo.klantId}</h2>
+						<h2>${klantInfo.achternaam}</h2>
+						<h2>${klantInfo.voornaam}</h2>
+						<h2>${klantInfo.adress}</h2>
+						<h2>${klantInfo.idNummer}</h2>
+						<h2>${klantInfo.telefoonNummer}</h2>
+						
+
+					
+					`;
+				})
+				.catch(error => {
+					console.error('Error:', error);
+					document.querySelector('#country-info').innerHTML = `<p>Sorry, we couldn't find any information for "${searchQuery}".</p>`;
+				});
+		});
+	</script>
+<!-- 
+<p>Capital: ${countryInfo.capital}</p>
+<p>Population: ${countryInfo.population.toLocaleString()}</p>
+<p>Region: ${countryInfo.region}</p>
+<p>Subregion: ${countryInfo.subregion}</p> -->
+</body>
+</html>

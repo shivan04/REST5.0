@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Country Search and Edit</title>
+  </head>
+  <body>
+    <label for="country-name-input">Country Name:</label>
+    <input type="text" id="country-name-input">
+    <button onclick="searchCountry()">Search</button>
+    <br>
+    <br>
+    <label for="country-population-input">Population:</label>
+    <input type="number" id="country-population-input">
+    <button onclick="editCountry()">Edit Population</button>
+    <br>
+    <br>
+    <div id="country-details"></div>
+    <script>
+      function searchCountry() {
+        const name = document.getElementById('country-name-input').value;
+        fetch(`https://restcountries.com/v2/name/${name}?fullText=true`)
+          .then(response => response.json())
+          .then(data => {
+            const country = data[0];
+            const details = `Name: ${country.name}<br>Capital: ${country.capital}<br>Population: ${country.population}`;
+            document.getElementById('country-details').innerHTML = details;
+            document.getElementById('country-population-input').value = country.population;
+          })
+          .catch(error => {
+            console.error(error);
+            document.getElementById('country-details').innerHTML = 'Error: country not found';
+          });
+      }
+
+      function editCountry() {
+        const name = document.getElementById('country-name-input').value;
+        const population = document.getElementById('country-population-input').value;
+        fetch(`https://restcountries.com/v2/name/${name}?fullText=true`)
+          .then(response => response.json())
+          .then(data => {
+            const country = data[0];
+            country.population = population;
+            fetch(`https://restcountries.com/v2/alpha/${country.alpha2Code}`, {
+              method: 'PUT',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(country)
+            })
+              .then(response => response.json())
+              .then(data => {
+                console.log(data);
+                const details = `Name: ${country.name}<br>Capital: ${country.capital}<br>Population: ${country.population}`;
+                document.getElementById('country-details').innerHTML = details;
+              })
+              .catch(error => {
+                console.error(error);
+                document.getElementById('country-details').innerHTML = 'Error: failed to update population';
+              });
+          })
+          .catch(error => {
+            console.error(error);
+            document.getElementById('country-details').innerHTML = 'Error: country not found';
+          });
+      }
+    </script>
+  </body>
+</html>

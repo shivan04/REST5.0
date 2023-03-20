@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="./crudklanten.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <!-- <form class="form-inline my-2 my-lg-0">
+        <div class="input-group">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search-input">
+          <div class="input-group-append">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="search()">Search</button>
+          </div>
+        </div>
+      </form> -->
+      
+      <h1>Country Info</h1>
+      <form>
+          <label for="country-search">Search for a country:</label>
+          <input type="number" id="country-search" name="country-search" required>
+          <button type="submit">Search</button>
+      </form>
+      <div id="country-info"></div>
+  
+      <script>
+          const form = document.querySelector('form');
+          form.addEventListener('submit', e => {
+              e.preventDefault();
+              const searchQuery = document.querySelector('#country-search').value;
+              fetch(`http://localhost:8081/REST5_0_war/api/klant/getklant/${searchQuery}`)
+                  .then(response => response.json())
+                  .then(data => {
+                      const countryInfo = data[0];
+                      document.querySelector('#country-info').innerHTML = `
+                          <h2>${countryInfo.achternaam}</h2>
+                   
+                          <p>Capital: ${countryInfo.voornaam}</p>
+                          <p>Capital: ${countryInfo.achternaam}</p>
+                
+                      `;
+                  })
+                  .catch(error => {
+                      console.error('Error:', error);
+                      document.querySelector('#country-info').innerHTML = `<p>Sorry, we couldn't find any information for "${searchQuery}".</p>`;
+                  });
+          });
+      </script>
+
+
+    
+</body>
+</html>
